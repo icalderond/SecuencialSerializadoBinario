@@ -116,14 +116,20 @@ namespace Ejercicio6._5._7
 
         public void RenombrarArchivo(string strNuevoNombreArchivo)
         {
-            
-            string OnlyName = NombreArchivo.Split('\\').Last();
-            string RutaActual = NombreArchivo.Replace(OnlyName, "");
-            string NombreArchivoNuevo=RutaActual + strNuevoNombreArchivo;
+            try
+            {
+                string OnlyName = NombreArchivo.Split('\\').Last();
+                string RutaActual = NombreArchivo.Replace(OnlyName, "");
+                string NombreArchivoNuevo=RutaActual + strNuevoNombreArchivo;
 
-            File.Copy(NombreArchivo,NombreArchivoNuevo);
-            EliminarArchivo();
-            NombreArchivo = NombreArchivoNuevo;
+                File.Copy(NombreArchivo,NombreArchivoNuevo);
+                EliminarArchivo();
+                NombreArchivo = NombreArchivoNuevo;
+            }
+            catch (Exception)
+            {
+                throw new Exception("El archivo no existe");
+            }
 
         }
     }
