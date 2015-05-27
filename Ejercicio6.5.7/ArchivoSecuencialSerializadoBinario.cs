@@ -43,7 +43,10 @@ namespace Ejercicio6._5._7
 
         private void Crear()
         {
-            
+            if (flujo == null)
+            {
+                flujo = new FileStream();
+            }
         }
 
         public void AbrirEnModoEscritura()
