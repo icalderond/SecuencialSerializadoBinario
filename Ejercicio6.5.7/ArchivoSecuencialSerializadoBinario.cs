@@ -43,6 +43,7 @@ namespace Ejercicio6._5._7
 
         private void Crear()
         {
+            seriador = new BinaryFormatter();
         }
 
         public void AbrirEnModoEscritura()
@@ -86,12 +87,32 @@ namespace Ejercicio6._5._7
 
         public void GrabarObjeto(tipo miObjeto)
         {
-
+            try
+            {
+                using (Stream stream = File.Open(NombreArchivo, FileMode.Create))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    bin.Serialize(stream, miObjeto);
+                }
+            }
+            catch (IOException)
+            {
+            }
         }
 
         public tipo LeerObjeto()
         {
-            
+            List<tipo> listTipo;
+            using (Stream stream = File.Open("data.bin", FileMode.Open))
+            {
+                BinaryFormatter bin = new BinaryFormatter();
+
+                listTipo = (List<tipo>)bin.Deserialize(stream);
+                foreach (tipo lizard in listTipo)
+                {
+                }
+            }
+            return listTipo[0];
         }
 
         public void ModificarObjeto(tipo miObjeto)

@@ -5,3 +5,7 @@ C:\Users\israel.calderon\Downloads\D\Ejercicio6.5.7\Ejercicio6.5.7\Ejercicio6.5.
 C:\Users\israel.calderon\Downloads\D\Ejercicio6.5.7\Ejercicio6.5.7\Ejercicio6.5.7\obj\Debug\Ejercicio6._5._7.Form1.resources
 C:\Users\israel.calderon\Downloads\D\Ejercicio6.5.7\Ejercicio6.5.7\Ejercicio6.5.7\obj\Debug\Ejercicio6._5._7.Properties.Resources.resources
 C:\Users\israel.calderon\Downloads\D\Ejercicio6.5.7\Ejercicio6.5.7\Ejercicio6.5.7\obj\Debug\Ejercicio6.5.7.csproj.GenerateResource.Cache
+C:\Users\israel.calderon\Downloads\D\Ejercicio6.5.7\Ejercicio6.5.7\Ejercicio6.5.7\bin\Debug\Ejercicio6.5.7.exe
+C:\Users\israel.calderon\Downloads\D\Ejercicio6.5.7\Ejercicio6.5.7\Ejercicio6.5.7\bin\Debug\Ejercicio6.5.7.pdb
+C:\Users\israel.calderon\Downloads\D\Ejercicio6.5.7\Ejercicio6.5.7\Ejercicio6.5.7\obj\Debug\Ejercicio6.5.7.exe
+C:\Users\israel.calderon\Downloads\D\Ejercicio6.5.7\Ejercicio6.5.7\Ejercicio6.5.7\obj\Debug\Ejercicio6.5.7.pdb
