@@ -77,7 +77,6 @@ namespace Ejercicio6._5._7
             try
             {
                 flujo = new FileStream(NombreArchivo, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-
             }
             catch (Exception)
             {
@@ -100,19 +99,16 @@ namespace Ejercicio6._5._7
             }
         }
 
-        public tipo LeerObjeto()
+        public List<tipo> LeerObjeto()
         {
             List<tipo> listTipo;
-            using (Stream stream = File.Open("data.bin", FileMode.Open))
+            using (Stream stream = File.Open(NombreArchivo, FileMode.Open))
             {
                 BinaryFormatter bin = new BinaryFormatter();
 
                 listTipo = (List<tipo>)bin.Deserialize(stream);
-                foreach (tipo lizard in listTipo)
-                {
-                }
             }
-            return listTipo[0];
+            return listTipo;
         }
 
         public void ModificarObjeto(tipo miObjeto)
