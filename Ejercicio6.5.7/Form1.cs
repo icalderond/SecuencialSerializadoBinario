@@ -15,6 +15,7 @@ namespace Ejercicio6._5._7
         public Form1()
         {
             InitializeComponent();
+            ArchivoSecuencialSerializadoBinario<Pelicula> peliculasDoc = new ArchivoSecuencialSerializadoBinario<Pelicula>(@"C:\doc.txt");
         }
     }
 }

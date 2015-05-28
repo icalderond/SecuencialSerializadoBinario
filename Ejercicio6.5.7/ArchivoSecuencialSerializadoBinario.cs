@@ -33,6 +33,7 @@ namespace Ejercicio6._5._7
         public ArchivoSecuencialSerializadoBinario(string strNombreArchivo)
         {
             NombreArchivo = strNombreArchivo;
+            Crear();//va adentro por que es privado
         }
 
         ~ArchivoSecuencialSerializadoBinario()
@@ -44,6 +45,10 @@ namespace Ejercicio6._5._7
         private void Crear()
         {
             seriador = new BinaryFormatter();
+            if (!File.Exists(NombreArchivo))
+            {
+                File.Create(NombreArchivo);
+            }
         }
 
         public void AbrirEnModoEscritura()
