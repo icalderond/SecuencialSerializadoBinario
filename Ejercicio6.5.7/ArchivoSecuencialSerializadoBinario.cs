@@ -32,6 +32,7 @@ namespace Ejercicio6._5._7
 
         public ArchivoSecuencialSerializadoBinario(string strNombreArchivo)
         {
+
             NombreArchivo = strNombreArchivo;
             Crear();//va adentro por que es privado
         }
@@ -47,18 +48,20 @@ namespace Ejercicio6._5._7
             seriador = new BinaryFormatter();
             if (!File.Exists(NombreArchivo))
             {
-                File.Create(NombreArchivo);
+                File.Delete(NombreArchivo);
+                File.Create(NombreArchivo).Dispose();
             }
+
         }
 
         public void AbrirEnModoEscritura()
         {
             try
             {
-                flujo = new FileStream(NombreArchivo, FileMode.Append, FileAccess.Write);
+                flujo = new FileStream(NombreArchivo, FileMode.Append);
 
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw new Exception("El archivo no existe");
             }
@@ -68,7 +71,7 @@ namespace Ejercicio6._5._7
         {
             try
             {
-                flujo = new FileStream(NombreArchivo, FileMode.Open, FileAccess.Read);
+                flujo = new FileStream(NombreArchivo, FileMode.Open);
 
             }
             catch (Exception)
@@ -93,27 +96,35 @@ namespace Ejercicio6._5._7
         {
             try
             {
-                using (Stream stream = File.Open(NombreArchivo, FileMode.Create))
-                {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    bin.Serialize(stream, miObjeto);
-                }
+                var list = LeerObjeto();
+                list.Add(miObjeto);
+                BinaryFormatter bin = new BinaryFormatter();
+                
+                bin.Serialize(flujo, miObjeto);
             }
             catch (IOException)
             {
+                throw new Exception("No se pudo serializar");
             }
         }
 
         public List<tipo> LeerObjeto()
         {
-            List<tipo> listTipo;
-            using (Stream stream = File.Open(NombreArchivo, FileMode.Open))
+            List<tipo> tipoValue = new List<tipo>();
+            BinaryFormatter bin = new BinaryFormatter();
+            try
             {
-                BinaryFormatter bin = new BinaryFormatter();
-
-                listTipo = (List<tipo>)bin.Deserialize(stream);
+                if (flujo.Length > 0)
+                {
+                    var t = (List<tipo>)bin.Deserialize(flujo);
+                }
             }
-            return listTipo;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return tipoValue;
         }
 
         public void ModificarObjeto(tipo miObjeto)
@@ -124,7 +135,7 @@ namespace Ejercicio6._5._7
 
         public void Cerrar()
         {
-
+            flujo.Close();
         }
 
         public void EliminarArchivo()
@@ -138,9 +149,9 @@ namespace Ejercicio6._5._7
             {
                 string OnlyName = NombreArchivo.Split('\\').Last();
                 string RutaActual = NombreArchivo.Replace(OnlyName, "");
-                string NombreArchivoNuevo=RutaActual + strNuevoNombreArchivo;
+                string NombreArchivoNuevo = RutaActual + strNuevoNombreArchivo;
 
-                File.Copy(NombreArchivo,NombreArchivoNuevo);
+                File.Copy(NombreArchivo, NombreArchivoNuevo);
                 EliminarArchivo();
                 NombreArchivo = NombreArchivoNuevo;
             }
