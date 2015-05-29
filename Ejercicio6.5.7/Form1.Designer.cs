@@ -42,6 +42,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dtgPeliculas = new System.Windows.Forms.DataGridView();
+            this.btnVaciar = new System.Windows.Forms.Button();
             this.grpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPeliculas)).BeginInit();
             this.SuspendLayout();
@@ -67,9 +68,9 @@
             this.grpDatos.Controls.Add(this.txtNombre);
             this.grpDatos.Controls.Add(this.label1);
             this.grpDatos.Location = new System.Drawing.Point(9, 10);
-            this.grpDatos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpDatos.Margin = new System.Windows.Forms.Padding(2);
             this.grpDatos.Name = "grpDatos";
-            this.grpDatos.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpDatos.Padding = new System.Windows.Forms.Padding(2);
             this.grpDatos.Size = new System.Drawing.Size(220, 172);
             this.grpDatos.TabIndex = 1;
             this.grpDatos.TabStop = false;
@@ -78,7 +79,7 @@
             // txtRentaCompra
             // 
             this.txtRentaCompra.Location = new System.Drawing.Point(116, 137);
-            this.txtRentaCompra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRentaCompra.Margin = new System.Windows.Forms.Padding(2);
             this.txtRentaCompra.Name = "txtRentaCompra";
             this.txtRentaCompra.Size = new System.Drawing.Size(37, 20);
             this.txtRentaCompra.TabIndex = 7;
@@ -96,7 +97,7 @@
             // txtCantidad
             // 
             this.txtCantidad.Location = new System.Drawing.Point(52, 99);
-            this.txtCantidad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCantidad.Margin = new System.Windows.Forms.Padding(2);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(37, 20);
             this.txtCantidad.TabIndex = 5;
@@ -114,7 +115,7 @@
             // txtPrecio
             // 
             this.txtPrecio.Location = new System.Drawing.Point(52, 63);
-            this.txtPrecio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(2);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(75, 20);
             this.txtPrecio.TabIndex = 3;
@@ -132,7 +133,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(52, 27);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(149, 20);
             this.txtNombre.TabIndex = 1;
@@ -140,7 +141,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(257, 32);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(76, 23);
             this.btnAgregar.TabIndex = 2;
@@ -150,7 +151,7 @@
             // btnModificar
             // 
             this.btnModificar.Location = new System.Drawing.Point(257, 72);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(76, 23);
             this.btnModificar.TabIndex = 3;
@@ -160,7 +161,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(257, 111);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(76, 23);
             this.btnEliminar.TabIndex = 4;
@@ -170,7 +171,7 @@
             // btnSalir
             // 
             this.btnSalir.Location = new System.Drawing.Point(257, 147);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(2);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(76, 23);
             this.btnSalir.TabIndex = 5;
@@ -181,24 +182,34 @@
             // 
             this.dtgPeliculas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgPeliculas.Location = new System.Drawing.Point(9, 216);
-            this.dtgPeliculas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtgPeliculas.Margin = new System.Windows.Forms.Padding(2);
             this.dtgPeliculas.Name = "dtgPeliculas";
             this.dtgPeliculas.RowTemplate.Height = 24;
             this.dtgPeliculas.Size = new System.Drawing.Size(368, 173);
             this.dtgPeliculas.TabIndex = 6;
+            // 
+            // btnVaciar
+            // 
+            this.btnVaciar.Location = new System.Drawing.Point(257, 176);
+            this.btnVaciar.Name = "btnVaciar";
+            this.btnVaciar.Size = new System.Drawing.Size(75, 23);
+            this.btnVaciar.TabIndex = 7;
+            this.btnVaciar.Text = "Vaciar";
+            this.btnVaciar.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 414);
+            this.Controls.Add(this.btnVaciar);
             this.Controls.Add(this.dtgPeliculas);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.grpDatos);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Tienda de video";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -225,6 +236,7 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.DataGridView dtgPeliculas;
+        private System.Windows.Forms.Button btnVaciar;
     }
 }
 

@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Ejercicio6._5._7
 {
-    [Serializable]
-    class ArchivoSecuencialSerializadoBinario<tipo>
+    class ArchivoSecuencialSerializadoBinario<T>
     {
         private string _strNombreArchivo;
 
@@ -19,8 +14,8 @@ namespace Ejercicio6._5._7
             set { _strNombreArchivo = value; }
         }
 
-        System.IO.FileStream flujo;
-        System.Runtime.Serialization.Formatters.Binary.BinaryFormatter seriador;
+        FileStream flujo;
+        BinaryFormatter seriador;
 
         private long _lngPosicion;
 
@@ -32,102 +27,64 @@ namespace Ejercicio6._5._7
 
         public ArchivoSecuencialSerializadoBinario(string strNombreArchivo)
         {
-
             NombreArchivo = strNombreArchivo;
-            Crear();//va adentro por que es privado
         }
 
         ~ArchivoSecuencialSerializadoBinario()
         {
-            if (flujo != null)
-                flujo.Close();
+            this.Crear();
         }
 
         private void Crear()
         {
-            seriador = new BinaryFormatter();
-            if (!File.Exists(NombreArchivo))
-            {
-                File.Delete(NombreArchivo);
-                File.Create(NombreArchivo).Dispose();
-            }
+            flujo = new FileStream(NombreArchivo, FileMode.Create);
 
         }
 
         public void AbrirEnModoEscritura()
         {
-            try
-            {
+            if (File.Exists(NombreArchivo))
                 flujo = new FileStream(NombreArchivo, FileMode.Append);
 
-            }
-            catch (Exception)
-            {
-                throw new Exception("El archivo no existe");
-            }
+            else
+                Crear();
+            seriador = new BinaryFormatter();
         }
 
         public void AbrirEnModoLectura()
         {
-            try
+            if (File.Exists(NombreArchivo))
             {
                 flujo = new FileStream(NombreArchivo, FileMode.Open);
-
+                seriador = new BinaryFormatter();
             }
-            catch (Exception)
-            {
-                throw new Exception("El archivo no existe");
-            }
+            else
+                throw new Exception("No existe");
         }
 
         public void AbrirEnModoLecturaYEscritura()
         {
-            try
+            if (File.Exists(NombreArchivo))
             {
-                flujo = new FileStream(NombreArchivo, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                flujo = new FileStream(NombreArchivo, FileMode.Open, FileAccess.ReadWrite);
             }
-            catch (Exception)
-            {
-                throw new Exception("El archivo no existe");
-            }
+            else
+                this.Crear();
+            seriador = new BinaryFormatter();
         }
 
-        public void GrabarObjeto(tipo miObjeto)
+        public void GrabarObjeto(T miObjeto)
         {
-            try
-            {
-                var list = LeerObjeto();
-                list.Add(miObjeto);
-                BinaryFormatter bin = new BinaryFormatter();
-                
-                bin.Serialize(flujo, miObjeto);
-            }
-            catch (IOException)
-            {
-                throw new Exception("No se pudo serializar");
-            }
+            seriador.Serialize(flujo, miObjeto);
         }
 
-        public List<tipo> LeerObjeto()
+        public T LeerObjeto()
         {
-            List<tipo> tipoValue = new List<tipo>();
-            BinaryFormatter bin = new BinaryFormatter();
-            try
-            {
-                if (flujo.Length > 0)
-                {
-                    var t = (List<tipo>)bin.Deserialize(flujo);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-            return tipoValue;
+            Posicion = flujo.Position;
+            return ((T)seriador.Deserialize(flujo));
         }
 
-        public void ModificarObjeto(tipo miObjeto)
+        public void ModificarObjeto(T miObjeto)
         {
             flujo.Seek(Posicion, SeekOrigin.Begin);
             this.GrabarObjeto(miObjeto);
@@ -135,7 +92,8 @@ namespace Ejercicio6._5._7
 
         public void Cerrar()
         {
-            flujo.Close();
+            if (flujo != null)
+                flujo.Close();
         }
 
         public void EliminarArchivo()
@@ -145,21 +103,7 @@ namespace Ejercicio6._5._7
 
         public void RenombrarArchivo(string strNuevoNombreArchivo)
         {
-            try
-            {
-                string OnlyName = NombreArchivo.Split('\\').Last();
-                string RutaActual = NombreArchivo.Replace(OnlyName, "");
-                string NombreArchivoNuevo = RutaActual + strNuevoNombreArchivo;
-
-                File.Copy(NombreArchivo, NombreArchivoNuevo);
-                EliminarArchivo();
-                NombreArchivo = NombreArchivoNuevo;
-            }
-            catch (Exception)
-            {
-                throw new Exception("El archivo no existe");
-            }
-
+            File.Move(NombreArchivo, strNuevoNombreArchivo);
         }
     }
 }
